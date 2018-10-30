@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+post_to_slack() {
+  echo "$*"
+  # curl -X POST --data-urlencode "payload={\"username\": \"flint $TRAVIS_BRANCH deploy\", \"text\": \"$*\"}" "$SLACK_WEBHOOK_URL"
+}
+
+if [ "$TRAVIS_BRANCH" == production ]; then
+  export NETLIFY_SITE_ID=flint-production-msl.netlify.com
+elif [ "$TRAVIS_BRANCH" == staging ]; then
+  export NETLIFY_SITE_ID=flint-staging-msl.netlify.com
+else
+  echo "unknown branch; not deploying"
+  exit 1
+fi
+
+post_to_slack "deploying frontend"
+netlify deploy -d build --prod
+
+post_to_slack "deploy finished."
