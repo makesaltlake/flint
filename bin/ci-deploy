@@ -1,11 +1,8 @@
 #!/bin/bash
 
-set -e
+. bin/functions
 
-post_to_slack() {
-  echo "$*"
-  # curl -X POST --data-urlencode "payload={\"username\": \"flint $TRAVIS_BRANCH deploy\", \"text\": \"$*\"}" "$SLACK_WEBHOOK_URL"
-}
+set -e
 
 if [ "$TRAVIS_BRANCH" == production ]; then
   export NETLIFY_SITE_ID=flint-production-msl.netlify.com

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. bin/functions
+
+post_to_slack "starting deploy (<$TRAVIS_BUILD_WEB_URL|build log>)"

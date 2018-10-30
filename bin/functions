@@ -1,0 +1,4 @@
+post_to_slack() {
+  echo "posting to slack: $*"
+  # curl -X POST --data-urlencode "payload={\"username\": \"flint $TRAVIS_BRANCH deploy\", \"text\": \"$*\"}" "$SLACK_WEBHOOK_URL"
+}

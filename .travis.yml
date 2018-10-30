@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - '10'
+before_install: bash bin/ci-start-notify
 script: yarn build
 before_deploy:
   - yarn global add netlify-cli
