@@ -1,6 +1,10 @@
 language: node_js
 node_js:
   - '10'
+branches:
+  only:
+    - staging
+    - production
 before_install: bash bin/ci-start-notify
 script: yarn build
 before_deploy:
